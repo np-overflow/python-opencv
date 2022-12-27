@@ -28,7 +28,7 @@ while True:
 
         bordered_img= cv2.copyMakeBorder(img,30,30,30,30,cv2.BORDER_CONSTANT,value=[255,255,255])       #Add white border for better accuracy
 
-        cv2.imwrite('eqn.jpg',bordered_img)     #Writing the image out to see what it looks like
+        cv2.imwrite('python-opencv/eqn.jpg',bordered_img)     #Writing the image out to see what it looks like
 
         equation = pytesseract.image_to_string(bordered_img).lower()       #lower X -> x
 
