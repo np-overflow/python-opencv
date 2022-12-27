@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 from PIL import Image
 import pytesseract
-pytesseract.pytesseract.tesseract_cmd = r'/usr/bin/tesseract'     #https://github.com/UB-Mannheim/tesseract/wiki
+pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'     #https://github.com/UB-Mannheim/tesseract/wiki
 signs = ["x","/","+","-","*"]
 mistakes = ["x","l","|","z","s","%","o"]
 correction = ["*","1","1","2","5","*","0"]
@@ -31,7 +31,7 @@ while True:
         cv2.imwrite('python-opencv/eqn.jpg',bordered_img)     #Writing the image out to see what it looks like
 
         equation = pytesseract.image_to_string(bordered_img).lower()       #lower X -> x
-
+        print("Original Text:", equation)
         for c in equation:
             if not c.isnumeric() and c not in signs:
                 equation = equation.replace(c,"")       #Removing noise from equation
@@ -43,11 +43,10 @@ while True:
         else:
             for i in range(len(mistakes)):
                 equation = equation.replace(mistakes[i],correction[i])      #Correcting frequently misread text
-            print(equation)
             try:
                 print(f"{equation} = {eval(equation)}\n")
-            except Exception as e:
-                print(e)
+            except Exception as e:                      #In case of any errors E.g. Division by 0
+                print(e + "\n")
 
     if cv2.waitKey(1) == ord(' '):     #Toggle set on Spacebar to end video capture
         break
