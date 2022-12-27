@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 from PIL import Image
 import pytesseract
-pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'     #https://github.com/UB-Mannheim/tesseract/wiki
+pytesseract.pytesseract.tesseract_cmd = r'/usr/bin/tesseract'     #https://github.com/UB-Mannheim/tesseract/wiki
 signs = ["x","/","+","-","*"]
 mistakes = ["x","l","|","z","s","%","o"]
 correction = ["*","1","1","2","5","*","0"]
@@ -14,7 +14,7 @@ while True:
     _,img = camera.read()
     cv2.imshow('Text detection', img)     #Ensure that you have a camera installed or errors will be faced
     
-    if n % 30 == 0:         #might want to increase this 30 number if ur computer is too slow
+    if n % 45 == 0:         #Every 45 frames, process the captured image
     
         new_image = cv2.resize(img, (400,400))      #Tesseract works best on images which have a DPI of at least 300 dpi, so resizing can increase accuracy
         img = cv2.cvtColor(new_image, cv2.COLOR_BGR2GRAY)       #Converting to Grayscale
@@ -37,7 +37,7 @@ while True:
                 equation = equation.replace(c,"")       #Removing noise from equation
 
         if any(c in equation for c in signs) != True:
-            print("No equations found gg")
+            print("No equations found!")
             continue
 
         else:
@@ -45,7 +45,7 @@ while True:
                 equation = equation.replace(mistakes[i],correction[i])      #Correcting frequently misread text
             print(equation)
             try:
-                print(f"{equation}={eval(equation)}")
+                print(f"{equation} = {eval(equation)}\n")
             except Exception as e:
                 print(e)
 
