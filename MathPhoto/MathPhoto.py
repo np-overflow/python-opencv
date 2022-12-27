@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 from PIL import Image
 import pytesseract
-pytesseract.pytesseract.tesseract_cmd = r'/usr/bin/tesseract'     #https://github.com/UB-Mannheim/tesseract/wiki
+pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'     #https://github.com/UB-Mannheim/tesseract/wiki
 signs = ["x","/","+","-","*"]
 mistakes = ["x","l","|","z","s","%","o"]
 correction = ["*","1","1","2","5","*","0"]
@@ -49,9 +49,8 @@ while True:
             except Exception as e:
                 print(e)
 
-    if cv2.waitKey(1) & 0xFF==ord(' '):     #Toggle set on Spacebar to end video capture
+    if cv2.waitKey(1) == ord(' '):     #Toggle set on Spacebar to end video capture
         break
 
-
-
-
+camera.release()
+cv2.destroyAllWindows()
