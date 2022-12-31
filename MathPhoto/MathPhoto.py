@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 from PIL import Image
 import pytesseract
-pytesseract.pytesseract.tesseract_cmd = r'/usr/bin/tesseract'     #https://github.com/UB-Mannheim/tesseract/wiki
+pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'     #https://github.com/UB-Mannheim/tesseract/wiki
 signs = ["x","/","+","-","*"]
 mistakes = ["x","l","|","z","s","%","o"]
 correction = ["*","1","1","2","5","*","0"]
@@ -28,7 +28,7 @@ while True:
 
         bordered_img= cv2.copyMakeBorder(img,30,30,30,30,cv2.BORDER_CONSTANT,value=[255,255,255])       #Add white border for better accuracy
 
-        cv2.imwrite('python-opencv/eqn.jpg',bordered_img)     #Writing the image out to see what it looks like
+        cv2.imwrite('MathPhoto/eqn.jpg',bordered_img)     #Writing the image out to see what it looks like
 
         equation = pytesseract.image_to_string(bordered_img).lower()       #lower X -> x
         print("Original Text:", equation)

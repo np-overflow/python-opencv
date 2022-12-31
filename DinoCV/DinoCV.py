@@ -15,14 +15,14 @@ import pyautogui as pag
 looptime = time() # Time Bookmark
 while True:
     # ScreenGrabbing
-    img = ImageGrab.grab(bbox=(120,400,350,800)) #bbox default = whole screen | (left_x, top_y, right_x, bottom_y)
+    img = ImageGrab.grab(bbox=(200,200,430,600)) #bbox default = whole screen | (left_x, top_y, right_x, bottom_y)
     
     img_arry = np.array(img) # Convert Image to an array ; so open CV can understand
     img_grey = cv.cvtColor(img_arry, cv.COLOR_BGR2GRAY) # Convert to greyscale
     
 
     # Compare Images (Screencap vs cactus template)
-    template = cv.imread(r'.\template\catc1.png',0) #0 parameter = read image in greyscale mode
+    template = cv.imread(r'.\DinoCV\template\catc1.png',0) #0 parameter = read image in greyscale mode
 
     result = cv.matchTemplate(img_grey,template, cv.TM_CCOEFF_NORMED)
     min_val, max_val, min_loc, max_loc = cv.minMaxLoc(result)
@@ -31,7 +31,7 @@ while True:
     cactusFound = False
     if max_val >= threshold:
         print("Found Cactus")
-        pag.press('space') # Keyboard Input (if cactus is found; emulate key press)
+        pag.press('space') # Keyboard Input (if cactus is f ound; emulate key press)
 
 
     # FPS (How many time segments can fit within 1 second)
@@ -39,7 +39,7 @@ while True:
     looptime = time()
 
     
-    cv.imshow("",result) # Show screencaptured images (videos = buch of photos (frames)) [result,img_arry]
+    cv.imshow("",img_grey) # Show screencaptured images (videos = buch of photos (frames)) [result,img_arry]
 
 
     # Exit ;
