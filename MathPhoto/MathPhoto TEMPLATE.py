@@ -15,7 +15,8 @@ while True:
     #<INSERT CAMERA CAPTURE>     #Ensure that you have a camera installed or errors will be faced
     
     if n % 45 == 0:         #Every 45 frames, process the captured image
-    
+        
+        """ <-- Remove this 👍 (After you are done)
         new_image = cv2.resize(img, (400,400))      #Tesseract works best on images which have a DPI of at least 300 dpi, so resizing can increase accuracy
         img = cv2.cvtColor(new_image, cv2.COLOR_BGR2GRAY)       #Converting to Grayscale
         kernel = np.ones((1,1), np.uint8)
@@ -23,6 +24,7 @@ while True:
         img = cv2.erode(img, kernel, iterations=1)
         img = cv2.GaussianBlur(img, (5,5), 0)
         img = cv2.medianBlur(img,5)
+        Remove this 👍 -->""" 
 
         img = cv2.threshold(img, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)[1]
 

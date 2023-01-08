@@ -1,3 +1,4 @@
+import os
 import cv2
 import numpy as np
 from PIL import Image
@@ -18,7 +19,7 @@ while True:
     
         new_image = cv2.resize(img, (400,400))      #Tesseract works best on images which have a DPI of at least 300 dpi, so resizing can increase accuracy
         img = cv2.cvtColor(new_image, cv2.COLOR_BGR2GRAY)       #Converting to Grayscale
-        kernel = np.ones((1,1), np.uint8)
+        kernel = np.ones((2,2), np.uint8)
         img = cv2.dilate(img, kernel, iterations=1)
         img = cv2.erode(img, kernel, iterations=1)
         img = cv2.GaussianBlur(img, (5,5), 0)
@@ -27,8 +28,9 @@ while True:
         img = cv2.threshold(img, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)[1]
 
         bordered_img= cv2.copyMakeBorder(img,30,30,30,30,cv2.BORDER_CONSTANT,value=[255,255,255])       #Add white border for better accuracy
+        cv2.imwrite(r"python-opencv\MathPhoto\that.jpg",img)
 
-        cv2.imwrite('MathPhoto/eqn.jpg',bordered_img)     #Writing the image out to see what it looks like
+        cv2.imwrite(r"python-opencv\MathPhoto\eqn.jpg",bordered_img)     #Writing the image out to see what it looks like
 
         equation = pytesseract.image_to_string(bordered_img).lower()       #lower X -> x
         print("Original Text:", equation)
