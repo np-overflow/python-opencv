@@ -11,8 +11,8 @@ camera = cv2.VideoCapture(0)
 n = 0
 while True:
     n += 1
-    #<INSERT CAMERA CAPTURE>
-    #<INSERT CAMERA CAPTURE>     #Ensure that you have a camera installed or errors will be faced
+    #<INSERT CAMERA CAPTURE 🔥>
+    #<INSERT CAMERA CAPTURE 🔥>     #Ensure that you have a camera installed or errors will be faced
     
     if n % 45 == 0:         #Every 45 frames, process the captured image
         

@@ -28,7 +28,6 @@ while True:
         img = cv2.threshold(img, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)[1]
 
         bordered_img= cv2.copyMakeBorder(img,30,30,30,30,cv2.BORDER_CONSTANT,value=[255,255,255])       #Add white border for better accuracy
-        cv2.imwrite(r"python-opencv\MathPhoto\that.jpg",img)
 
         cv2.imwrite(r"python-opencv\MathPhoto\eqn.jpg",bordered_img)     #Writing the image out to see what it looks like
 
