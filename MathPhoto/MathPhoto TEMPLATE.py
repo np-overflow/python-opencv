@@ -17,25 +17,27 @@ while True:
     if n % 45 == 0:         #Every 45 frames, process the captured image
         
         """ <-- Remove this 👍 (After you are done)
-        new_image = cv2.resize(img, (400,400))      #Tesseract works best on images which have a DPI of at least 300 dpi, so resizing can increase accuracy
-        img = cv2.cvtColor(new_image, cv2.COLOR_BGR2GRAY)       #Converting to Grayscale
-        kernel = np.ones((1,1), np.uint8)
-        img = cv2.dilate(img, kernel, iterations=1)
-        img = cv2.erode(img, kernel, iterations=1)
-        img = cv2.GaussianBlur(img, (5,5), 0)
-        img = cv2.medianBlur(img,5)
+
+        new_image = cv2.❓❓❓                  #Tesseract works best on images which have a DPI of at least 300 dpi, so resizing can increase accuracy
+        img = cv2.❓❓❓                        #Converting to Grayscale
+        kernel = np.ones((2,2), np.uint8)
+        img = cv2.❓❓❓                        #iterations --> how many times applied
+        img = cv2.❓❓❓
+        img = cv2.❓❓❓
+        img = cv2.❓❓❓
+
         Remove this 👍 -->""" 
 
-        img = cv2.threshold(img, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)[1]
+        img = cv2.threshold(img, 0, 255, ❓❓❓ + ❓❓❓)[1]
 
-        bordered_img= cv2.copyMakeBorder(img,30,30,30,30,cv2.BORDER_CONSTANT,value=[255,255,255])       #Add white border for better accuracy
+        bordered_img= cv2.❓❓❓(img,30,30,30,30,❓❓❓,value=[255,255,255])       #Add white border for better accuracy
 
-        cv2.imwrite('MathPhoto/eqn.jpg',bordered_img)     #Writing the image out to see what it looks like
+        cv2.imwrite(r"python-opencv\MathPhoto\eqn.jpg",bordered_img)     #Writing the image out to see what it looks like
 
-        equation = pytesseract.image_to_string(bordered_img).lower()       #lower X -> x
+        equation = pytesseract.❓❓❓(bordered_img).lower()               #lower X -> x
         print("Original Text:", equation)
         for c in equation:
-            if not c.isnumeric() and c not in signs:
+            if not c.❓❓❓ and c not in ❓❓❓:
                 equation = equation.replace(c,"")       #Removing noise from equation
 
         if any(c in equation for c in signs) != True:
@@ -50,7 +52,7 @@ while True:
             except Exception as e:                      #In case of any errors E.g. Division by 0
                 print(e + "\n")
 
-    if cv2.waitKey(1) == ord(' '):     #Toggle set on Spacebar to end video capture
+    if cv2.waitKey(1) == ord(❓❓❓):     #Toggle set on Spacebar to end video capture
         break
 
 camera.release()
