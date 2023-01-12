@@ -49,7 +49,7 @@ while True:
             try:
                 print(f"{equation} = {eval(equation)}\n")
             except Exception as e:                      #In case of any errors E.g. Division by 0
-                print(e + "\n")
+                print(e, "\n")
 
     if cv2.waitKey(1) == ord(❓❓❓):     #Toggle set on Spacebar to end video capture
         break
